@@ -16,15 +16,15 @@ def get_bovespa_tickers():
 		tickers = []
 		for row in table.findAll('tr')[1:]:
 			ticker = row.findAll('td')[1].text
-			tickers.append(ticker+'.SA')
+			if ticker[-2] != '3' and ticker[-1] != '4':
+				tickers.append(ticker+'.SA')
+				print(ticker)
 
-	with open("IBOVESPAtickers.pickle", "wb") as f:
+	with open("BOVESPA_All_tickers.pickle", "wb") as f:
 		pickle.dump(tickers,f)
-		print("File IBOVESPAtickers.pickle created")	# Just for Debug
+		print("File BOVESPA_All_tickers.pickle created")	# Just for Debug
 	return tickers
 
 
 
 bovespa_tickers = get_bovespa_tickers()
-
-	
